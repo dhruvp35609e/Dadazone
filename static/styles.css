@@ -1,0 +1,642 @@
+:root {
+    /* Modern Color Palette */
+    --primary-color: #6366f1;      /* Indigo */
+    --secondary-color: #4f46e5;    /* Darker Indigo */
+    --accent-color: #818cf8;       /* Light Indigo */
+    --background-color: #f8fafc;   /* Light Gray */
+    --card-bg: #ffffff;            /* White */
+    --text-primary: #1e293b;       /* Dark Slate */
+    --text-secondary: #64748b;     /* Medium Slate */
+    --text-light: #ffffff;         /* White */
+    --success-color: #10b981;      /* Emerald */
+    --danger-color: #ef4444;       /* Red */
+    --border-color: #e2e8f0;       /* Light Gray */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+/* Header Styles */
+.main-header {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.login-btn, .register-btn {
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+}
+
+.login-btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.register-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+/* Hero Image */
+.hero-section {
+    position: relative;
+    margin-top: 70px;
+}
+
+.hero-image {
+    width: 100%;
+    height: 580px;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--text-light);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 1rem;
+    backdrop-filter: blur(5px);
+}
+
+.hero-overlay h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Main Content Adjustment */
+.main-content {
+    margin-top: 80px; /* Adjusted to account for fixed header */
+    margin-bottom: 60px; /* Adjusted to account for footer */
+    min-height: calc(100vh - 140px); /* Ensures content fills the page */
+}
+
+/* Products Grid */
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.product-card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-details {
+    padding: 1.5rem;
+}
+
+/* Cart Styling */
+.cart-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-top: 80px;
+}
+
+.cart-item {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    gap: 1.5rem;
+}
+
+.cart-summary {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    height: fit-content;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Buttons */
+.add-to-cart-btn, .checkout-btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.add-to-cart-btn:hover, .checkout-btn:hover {
+    background-color: var(--accent-color);
+}
+
+.empty-cart-btn {
+    background-color: var(--danger-color);
+    margin-bottom: 1rem;
+}
+
+.update-btn {
+    background-color: var(--secondary-color);
+}
+
+/* Footer Styles */
+.main-footer {
+    background-color: var(--text-primary);
+    color: var(--text-light);
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-content a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-content a:hover {
+    color: var(--accent-color);
+}
+
+/* Flash Messages */
+.flash-messages {
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-nav ul {
+        gap: 0.5rem;
+    }
+    
+    .main-nav a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .footer-content {
+        font-size: 0.9rem;
+    }
+    
+    .cart-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+    }
+}
+
+/* Main content styling */
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgb(19, 37, 68);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(233, 234, 236);
+}
+
+/* Product list */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: white;
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul li:hover {
+    background-color: #f9f9f9;
+}
+
+ul li a {
+    background-color: grey;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+ul li a:hover {
+    background-color: grey;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input[type="text"], form input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    background-color:grey;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: grey;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.cart-container {
+    display: flex;
+    gap: 2rem;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cart-items {
+    flex: 2;
+}
+
+.cart-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #eee;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.cart-summary {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    height: fit-content;
+    background-color: white;
+}
+
+.remove-btn {
+    color: var(--danger-color);
+    text-decoration: none;
+}
+
+.checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.checkout-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 20px;
+}
+
+.product-card {
+    border: 1px solid #eee;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    background-color: white;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.add-to-cart-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.payment-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.payment-details input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.total {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px;
+}
+
+.update-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.empty-cart-btn {
+    background-color: var(--danger-color);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.empty-cart-btn:hover {
+    background-color: #d63031;
+}
+
+.empty-cart-form {
+    margin-bottom: 20px;
+}
+
+/* Auth Pages Styling */
+.auth-page {
+    background-color: var(--background-color);
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 20px;
+}
+
+.auth-box {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.auth-box h2 {
+    color: var(--text-primary);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.auth-subtitle {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.auth-form input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: var(--accent-color);
+}
+
+.auth-redirect {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.auth-redirect a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-redirect a:hover {
+    text-decoration: underline;
+}
+
+/* Active nav link */
+.main-nav a.active {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+/* Flash messages in auth pages */
+.flash-messages {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: var(--danger-color);
+    color: var(--text-light);
+    animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+}
