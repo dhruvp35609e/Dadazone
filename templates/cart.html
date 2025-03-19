@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Cart - DADAZONE</title>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="/" class="logo">DADAZONE</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="/products">Products</a></li>
+                    <li><a href="/cart">Cart 🛒</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1>Your Cart</h1>
+        
+        {% if cart_items %}
+            <div class="cart-container">
+                <div class="cart-items">
+                    {% for item in cart_items %}
+                        <div class="cart-item">
+                            <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" width="100">
+                            <div class="item-details">
+                                <h3>{{ item.product.name }}</h3>
+                                <p>Price: ${{ "%.2f"|format(item.product.price) }}</p>
+                                <p>Subtotal: ${{ "%.2f"|format(item.product.price * item.quantity) }}</p>
+                                <form action="{{ url_for('update_quantity', cart_id=item.id) }}" method="POST" class="quantity-form">
+                                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.stock }}">
+                                    <button type="submit" class="update-btn">Update</button>
+                                </form>
+                                <a href="{{ url_for('remove_from_cart', cart_id=item.id) }}" class="remove-btn">Remove</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="cart-summary">
+                    <h3>Cart Summary</h3>
+                    <p>Total Items: {{ total_items }}</p>
+                    <p>Subtotal: ${{ "%.2f"|format(total_price) }}</p>
+                    <p>Tax (10%): ${{ "%.2f"|format(total_price * 0.1) }}</p>
+                    <p class="total">Total: ${{ "%.2f"|format(total_price * 1.1) }}</p>
+                    
+                    <form action="{{ url_for('empty_cart') }}" method="POST" class="empty-cart-form">
+                        <button type="submit" class="empty-cart-btn">Empty Cart</button>
+                    </form>
+                    
+                    <form action="{{ url_for('process_payment') }}" method="POST" id="payment-form">
+                        <div class="payment-details">
+                            <input type="text" name="card_number" placeholder="Card Number" required>
+                            <input type="text" name="expiry" placeholder="MM/YY" required>
+                            <input type="text" name="cvv" placeholder="CVV" required>
+                        </div>
+                        <button type="submit" class="checkout-btn">Pay Now</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <p class="empty-cart">Your cart is empty. <a href="{{ url_for('products') }}">Continue shopping</a></p>
+        {% endif %}
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© 2025 DADAZONE | <a href="/products">Products</a> | <a href="/cart">Cart</a> | <a href="/login">Login</a> | Contact: support@dadazone.com</p>
+        </div>
+    </footer>
+</body>
+</html>
